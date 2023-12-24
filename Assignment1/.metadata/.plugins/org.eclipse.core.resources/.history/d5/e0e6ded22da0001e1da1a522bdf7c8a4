@@ -1,0 +1,36 @@
+package com.sunbeam.servlets;
+
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.sunbeam.daos.UserDao;
+import com.sunbeam.daos.UserDaoImpl;
+import com.sunbeam.pojos.Users;
+
+@WebServlet("/revshare")
+public class ShareServlet extends HttpServlet{
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+		int reviewId = Integer.parseInt(req.getParameter("id"));
+		UserDao userDao=new UserDaoImpl())
+			List<Users> list = userDao.findAll();
+		
+		resp.setContentType("text/html");
+		PrintWriter out = resp.getWriter();
+		out.println("<form method='post' action='reviewshare'>");
+		out.printf("Review Id: <input type='text' name='reviewid' value='%d' readonly/>", id);
+		out.println("<select name='userid'>");
+		for(Users u:list)
+		 out.printf("<option value='%d'>%s</option>", u.getId(), u.getFirstName());
+		out.println("</select>");
+		out.println("<input type='submit' value='Share'/>");
+		out.println("</form>");
+
+		
+	}
+
+}

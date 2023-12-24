@@ -1,0 +1,10 @@
+package com.sunbeam.servlets;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+@WebServlet("useradded")
+public class UserAddServlet extends HttpServlet{
+	 
+
+}

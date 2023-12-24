@@ -1,0 +1,39 @@
+package com.sunbeam.servlets;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.sunbeam.daos.ReviewDao;
+import com.sunbeam.daos.ReviewDaoImpl;
+import com.sunbeam.daos.UserDao;
+import com.sunbeam.daos.UserDaoImpl;
+import com.sunbeam.pojos.Users;
+@WebServlet("/Sign Up")
+public class AddUserServlet extends HttpServlet{
+	protected void doPost(HttpServletRequest req,HttpServletResponse resp) {
+		String fname=req.getParameter("fname");
+		String lname=req.getParameter("lname");
+		String email =req.getParameter("email");
+		String password = req.getParameter("passwd");
+		String mobile=req.getParameter("mob");
+		String birthdate=req.getParameter("birthday");
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date bod = sdf.parse(birthdate);
+			Users u = new Users(0, fname, lname, email, password, mobile, bod);
+			try(UserDao rDao = new UserDaoImpl()) {
+				rDao.save(u);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}

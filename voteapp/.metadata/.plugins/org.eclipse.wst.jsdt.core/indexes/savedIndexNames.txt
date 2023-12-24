@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+D:\voteapp\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2755600802.index
+243707172.index
+1991851072.index
+1872309707.index
+2640069945.index
+597153749.index
+1085948880.index

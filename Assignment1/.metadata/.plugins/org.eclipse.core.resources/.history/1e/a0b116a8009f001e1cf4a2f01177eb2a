@@ -1,0 +1,48 @@
+package com.sunbeam.servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.sunbeam.daos.MovieDao;
+import com.sunbeam.daos.MovieDaoImpl;
+import com.sunbeam.pojos.Movie;
+
+@WebServlet("/AddReview")
+public class AddReviewServlet extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		resp.setContentType("text/html");
+		PrintWriter out =resp.getWriter();
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<title>AddReview</title>");
+		out.println("</head>");
+		out.println("<body>");
+		
+		//HttpSession session=req.getSession();
+		out.println("<h5>Add Your Review</h5>");
+		try(MovieDao mdao=new MovieDaoImpl()){
+			List<Movie> list=mdao.findAll();
+			out.println("<select name='movieid'>");
+			for(Movie m:list)
+				out.printf("<option values='%d'>%s</option>",m.getId(),m.getTitle());
+			out.println("</select>");
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+	}
+
+}

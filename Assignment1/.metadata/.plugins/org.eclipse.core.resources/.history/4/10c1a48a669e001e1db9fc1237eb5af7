@@ -1,0 +1,22 @@
+package com.sunbeam.utils;
+
+
+import java.util.Date;
+
+public class DateTimeUtil {
+
+	public static Date sqlDateToUtilDate(java.sql.Date sDate) {
+		java.util.Date uDate = new java.util.Date(sDate.getTime()); 
+		return uDate;
+	}
+
+	public static Date utilDateToSqlDate(java.util.Date uDate) {
+		// TODO Auto-generated method stub
+		java.sql.Date sDate = new java.sql.Date(uDate.getTime());
+		return sDate;
+	}
+
+	
+
+}
+
